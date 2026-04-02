@@ -44,14 +44,49 @@ class _InitialScreenState extends State<InitialScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height:12),
-                
+                SizedBox(height:20),
+                Card(
+                  margin: .all(20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                  elevation:5,
+                  child: Column(
+                    crossAxisAlignment: .stretch,
+                    children: [
+                      Image.network('https://placehold.co/600x400/png',
+                      height: 200,
+                      width: double.infinity,
+                      fit: .cover,
+                      ),
+                      Padding(
+                        padding: .symmetric(horizontal: 15, vertical: 10),
+                        child: Text(
+                        'Camiseta Capy',
+                        style:GoogleFonts.orbitron(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,)
+                      ),
+                    ),
+                    Padding(
+                        padding: .symmetric(horizontal: 15, vertical: 10),
+                        child:
+                      Text(
+                        '28,00',
+                        style: GoogleFonts.orbitron(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,)
+                      ),
+                    ),
+                    ],
+                    ),
+                ),
                 SizedBox(height: 20),
               ],
             ),
           ),
         ],
-      )
+      ),
       )
     );
   }
