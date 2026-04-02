@@ -46,7 +46,21 @@ class _InitialScreenState extends State<InitialScreen> {
                   ),
                 ),
                 SizedBox(height:20),
-                ProductCardWidget(nome: 'Camisa Capy', url: 'https://placehold.co/600x400/png', preco: '28,00'),
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 3, // quantidade de produtos
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        ProductCardWidget(
+                          nome: 'Camisa Capy $index',
+                          url: 'https://placehold.co/600x400/png',
+                          preco: '28,00',
+                          ),
+                          ],
+                      );
+                    },
+                  ),
                 SizedBox(height: 20),
               ],
             ),
