@@ -37,21 +37,15 @@ class _InitialScreenState extends State<InitialScreen> {
             child: Column(
               children: [
                 Text(
-                  'Categorias',
+                  'Promos Especiais',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.orbitron(
                     fontSize: 31,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 12),
-                Text(
-                  'De roupas a gadgets tecnológicos temos tudo para atender suas paixões e hobbies com estilo e autenticidade',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                    fontSize: 16,
-                  ),
-                ),
+                SizedBox(height:12),
+                
                 SizedBox(height: 20),
               ],
             ),
