@@ -15,10 +15,12 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
   bool _obscurePassword = true;
 
+  /// Tenta realizar o login utilizando o AuthService.
   Future<void> _login() async {
     final username = _usernameController.text.trim();
     final password = _passwordController.text.trim();
 
+    // Validação básica de campos
     if (username.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Por favor, preencha todos os campos.')),
@@ -30,13 +32,16 @@ class _LoginScreenState extends State<LoginScreen> {
     
     final success = await AuthService().login(username, password);
 
+    // Verifica se o widget ainda está montado antes de usar o BuildContext
     if (!mounted) return;
 
     setState(() => _isLoading = false);
 
     if (success) {
+      // Navega para a home em caso de sucesso
       Navigator.pushReplacementNamed(context, '/home');
     } else {
+      // Exibe erro amigável ao usuário
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Erro ao realizar login. Verifique suas credenciais.'),
@@ -56,6 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Logo da UseDev
               Image.asset('assets/logo_usedev.png', height: 80),
               const SizedBox(height: 48),
               Text(
@@ -67,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 32),
+              // Campo de Usuário
               TextField(
                 controller: _usernameController,
                 decoration: InputDecoration(
@@ -76,6 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 16),
+              // Campo de Senha com opção de visibilidade
               TextField(
                 controller: _passwordController,
                 obscureText: _obscurePassword,
@@ -97,6 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 32),
+              // Botão de Entrar ou indicador de progresso
               _isLoading
                   ? const CircularProgressIndicator(color: Color(0xFF8A2BE2))
                   : ElevatedButton(

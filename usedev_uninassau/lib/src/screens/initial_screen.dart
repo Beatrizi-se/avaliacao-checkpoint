@@ -22,6 +22,7 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   void initState() {
     super.initState();
+    // Busca os produtos ao iniciar a tela
     _productsFuture = _apiService.getProducts();
   }
 
@@ -37,11 +38,11 @@ class _InitialScreenState extends State<InitialScreen> {
             icon: const Icon(Icons.person_outlined, size: 32, color: Color(0xFF0D0D2B)),
             onPressed: () {
               if (AuthService().isAuthenticated) {
-                // Could show profile or logout
+                // Diálogo de logout se o usuário estiver autenticado
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: const Text('Logout'),
+                    title: const Text('Sair'),
                     content: const Text('Deseja sair da sua conta?'),
                     actions: [
                       TextButton(
@@ -59,11 +60,13 @@ class _InitialScreenState extends State<InitialScreen> {
                   ),
                 );
               } else {
+                // Redireciona para login se não estiver autenticado
                 Navigator.pushNamed(context, '/login');
               }
             },
           ),
           const SizedBox(width: 10),
+          // Botão do carrinho com contador reativo
           ListenableBuilder(
             listenable: CartService(),
             builder: (context, child) {
@@ -129,6 +132,7 @@ class _InitialScreenState extends State<InitialScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
+                  // Lista dinâmica de produtos vinda da API
                   FutureBuilder<List<Product>>(
                     future: _productsFuture,
                     builder: (context, snapshot) {

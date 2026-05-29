@@ -20,6 +20,8 @@ class CartScreen extends StatelessWidget {
         listenable: CartService(),
         builder: (context, child) {
           final cart = CartService();
+          
+          // Caso o carrinho esteja vazio, exibe mensagem amigável
           if (cart.items.isEmpty) {
             return Center(
               child: Column(
@@ -79,6 +81,7 @@ class CartScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            // Controles de quantidade
                             Row(
                               children: [
                                 IconButton(
@@ -95,6 +98,7 @@ class CartScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
+                            // Botão para remover item
                             IconButton(
                               icon: const Icon(Icons.delete_outline, color: Colors.red),
                               onPressed: () => cart.removeFromCart(item.product.id),
@@ -106,6 +110,7 @@ class CartScreen extends StatelessWidget {
                   },
                 ),
               ),
+              // Resumo do pedido e botão de finalizar
               Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
@@ -143,7 +148,7 @@ class CartScreen extends StatelessWidget {
                     const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: () {
-                        // Mock checkout
+                        // Simulação de finalização de compra
                         showDialog(
                           context: context,
                           builder: (context) => AlertDialog(

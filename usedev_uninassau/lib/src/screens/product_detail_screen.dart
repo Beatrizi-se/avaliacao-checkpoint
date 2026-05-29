@@ -8,6 +8,7 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Recupera o produto passado por argumento na navegação
     final product = ModalRoute.of(context)!.settings.arguments as Product;
 
     return Scaffold(
@@ -19,6 +20,7 @@ class ProductDetailScreen extends StatelessWidget {
         backgroundColor: const Color(0xFF0D0D2B),
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
+          // Botão do carrinho com badge reativo
           ListenableBuilder(
             listenable: CartService(),
             builder: (context, child) {
@@ -64,6 +66,7 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // Imagem do produto com fundo branco para destaque
             Container(
               height: 300,
               padding: const EdgeInsets.all(20),
@@ -116,13 +119,14 @@ class ProductDetailScreen extends StatelessWidget {
                     product.description,
                     style: GoogleFonts.poppins(fontSize: 16),
                   ),
-                  const SizedBox(height: 100), // Space for button
+                  const SizedBox(height: 100), // Espaço para não cobrir o botão fixo
                 ],
               ),
             ),
           ],
         ),
       ),
+      // Botão de compra fixo na parte inferior
       bottomSheet: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
@@ -137,6 +141,7 @@ class ProductDetailScreen extends StatelessWidget {
         ),
         child: ElevatedButton(
           onPressed: () {
+            // Adiciona ao carrinho e exibe feedback
             CartService().addToCart(product);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
